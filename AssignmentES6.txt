@@ -1,0 +1,107 @@
+
+1. How are normal functions different from arrow functions?
+    
+ Ans  a) Normal functions have this but arrow function does not have this.
+      b) Normal function can be binded but arrow function can't be binded
+      c) Normal functions are constructible as well as callable i.e can be called using new keyword
+            whereas arrow functions are not constructible but only callable.
+
+
+2. What will be the output of following code:\
+
+var obj = {
+    name: "Michael",
+     func: function() {
+         var self = this;
+         console.log("outer func: " + this.name);
+         console.log("outer func: " + self.name);
+         (function() {
+             console.log("inner func:  " + this.name);
+             console.log("inner func:  " + self.name);
+         } ());
+     }
+ };
+ obj.func();
+
+ Ans (a) outer func: Michael
+     (b) outer func: Michael
+     (c) inner func:  undefined 
+     (d) inner func:  Michael
+
+      Explain how the above code will work.
+
+      At first the function func is called as a method of object obj. So, the 'this' of func will be pointing to the obj object. 
+     (a) Now, this.name will be the name key of obj. So, the value of name will be returned i.e Michael.
+     (b) Now self is declared as var and assigned with this i.e obj. So, self. name will also be Michael.
+       The inner function is called simply, not as a method of an object. 
+     (c)  So, the this of the function will be pointing to the global object i.e window object and so the this.name will be undefined as there is nothing assigned to the name key of window object.
+     (d) In case of self.name as the self variable was assigned with 'this' of obj, so self.name will return Michael
+
+
+3. What will happen in the following code. Explain.
+
+   console.log(firstName);
+   console.log(birthDate);
+   var firstName = 'Nick';
+   const birthDate = 10;
+
+Ans In the first skim, the variable firstName will be hoisted to the top and will be assigned as undefined. Now,      at the time of execution 'console.log(firstName);' will console undefined. On the other hand, the second console i.e 'console.log(birthDate);' will give error as the variable birthDate was not hoisted as it was used with const keyword.
+
+
+5. What will be the output of following code:
+
+var obj = {
+   name: "Michael",
+    func: () => {
+        var self = this;
+        console.log("outer func: " + this.name);
+        console.log("outer func: " + self.name);
+        const inner = () => {
+            console.log("inner func:  " + this.name);
+            console.log("inner func:  " + self.name);
+        } ;
+        inner();
+    }
+};
+obj.func();
+
+
+Ans  a) outer func: undefined
+     b) outer func: undefined
+     c) inner func:  undefined
+     d) inner func:  undefined
+
+Explain how the above code will work.
+
+  Here, the func is an arrow function and so it does not has its own 'this'. It will look towards its parent to point towards 'this'.
+  a) this.name in outer function will give the value of name key of global object i.e window object. So it will return undefined as window object name key has not been assigned.
+  b) self.name in outer function will also return undefined as self was assigned with 'this' which was pointing towards global object.
+  Now, the inner function is also an arrow function. It will look towards its parent for this. Here, its parent's 'this' is pointing to the global object. So, the inner function this will also be pointing to the window object.
+  c) this.name in inner function will give the value of name key of global object i.e window object. So it will return undefined as window object name key has not been assigned.
+  d) self.name in inner function will also return undefined as self was assigned with 'this' which was pointing towards global object.
+
+
+9. What will be the output of the following code? Explain.
+	 console.log([...'print string'])
+
+Ans. ['p','r','i','n','t',' ','s','t','r','i','n','g']
+
+The spread operator for the given string spreaded out each character of the string. Now, as the spread operator was used inside an array, all the characters of the string was inserted inside the array one by one.
+
+
+10. Explain the working of the following code.
+	{
+	    const b = [1, 2];
+       	b.push(3);
+	    b[3] = 4;
+        console.log(b)
+}
+
+Ans. [1,2,3,4]
+
+First, an array b was initialized with 1 and 2 as its element. Now, an element 3 was inserted using the push method, so the array became [1,2,3,4]. Now, at index 3 of the array another element i.e 4 was assigned. so the array became   [1,2,3,4].
+
+
+
+
+
