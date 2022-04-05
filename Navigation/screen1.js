@@ -15,7 +15,7 @@ const Screen1=({navigation,route})=>{
             })
             navigation.navigate('Screen2',route.params)}}>
             <Text>
-                {`Push:This is Screen 1..`}
+                {`Push:This is Screen 1.........`}
             </Text>
             </TouchableOpacity>
 
