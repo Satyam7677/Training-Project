@@ -8,7 +8,7 @@ const Screen2=({navigation,route})=>{
     return (
         <View>
             <Text>
-                {`${x}.....`}
+                {`x is....${x}.....`}
       
             </Text>
             
